@@ -23,8 +23,8 @@ class AirQualityViewModel : ViewModel() {
         AirQualityApi.retrofitService.getArea().enqueue(
             object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
-//                    _response.value = response.body()
-                    _response.value = "Success!"
+                    _response.value = response.body()
+//                    _response.value = "Success!"
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
