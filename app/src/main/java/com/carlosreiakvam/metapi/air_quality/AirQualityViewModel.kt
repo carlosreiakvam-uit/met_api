@@ -24,7 +24,7 @@ class AirQualityViewModel : ViewModel() {
             object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
 //                    _response.value = response.body()
-                    _response.value = "laise!"
+                    _response.value = "Fikk en response!"
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
