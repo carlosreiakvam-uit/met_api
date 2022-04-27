@@ -1,5 +1,5 @@
 package com.carlosreiakvam.metapi
 
-data class Stations(
+data class Station(
     val name: String
 )
