@@ -22,11 +22,10 @@ class AirQualityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        activity?.title = "Air Quality Go"
+        activity?.title = "Air Quality Query Tester"
         binding = FragmentAirQualityBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewmodel = airQualityViewModel
-        binding.stationRecyclerview.adapter = StationListAdapter()
 
         return binding.root
     }
