@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/airQualityFragment">
+
+    <fragment
+        android:id="@+id/airQualityFragment"
+        android:name="com.carlosreiakvam.metapi.air_quality.AirQualityFragment"
+        android:label="AirQualityFragment" />
+</navigation>
