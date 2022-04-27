@@ -1,13 +1,16 @@
 package com.carlosreiakvam.metapi.air_quality
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.carlosreiakvam.metapi.Stations
 import com.carlosreiakvam.metapi.network.AirQualityApi
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class AirQualityViewModel : ViewModel() {
 
@@ -20,17 +23,13 @@ class AirQualityViewModel : ViewModel() {
     }
 
     private fun getAirQualityResponse() {
-        AirQualityApi.retrofitService.getArea().enqueue(
-            object : Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-//                    _response.value = response.body()
-                    _response.value = "Fikk en response!"
-                }
+        viewModelScope.launch {
+            try {
+                val stationResult = AirQualityApi.retrofitService.getStations()
+                _response.value = "Success! ${stationResult.size} stations found!"
+            } catch (e: Exception) {
 
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    _response.value = "It's a fail!:" + t.message
-                }
             }
-        )
+        }
     }
 }
