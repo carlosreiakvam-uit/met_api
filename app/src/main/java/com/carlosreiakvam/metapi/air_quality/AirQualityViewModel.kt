@@ -23,7 +23,8 @@ class AirQualityViewModel : ViewModel() {
     private fun getStations() {
         viewModelScope.launch {
             try {
-                _stringQuery.value = AirQualityApi.retrofitService.getStations()
+                _stringQuery.value = AirQualityApi.retrofitService
+                    .getQueryTest("grunnkrets", "metadata", 60.0, 10.0)
                 Log.d("cre032", "Success")
 
             } catch (e: Exception) {
