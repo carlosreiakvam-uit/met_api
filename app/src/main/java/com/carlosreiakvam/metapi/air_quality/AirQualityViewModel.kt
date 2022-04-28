@@ -1,34 +1,48 @@
 package com.carlosreiakvam.metapi.air_quality
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carlosreiakvam.metapi.Stations
+import com.carlosreiakvam.metapi.Station
 import com.carlosreiakvam.metapi.network.AirQualityApi
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.lang.Exception
 
 class AirQualityViewModel : ViewModel() {
 
-    private val _response = MutableLiveData<String>()
-    val response: LiveData<String>
-        get() = _response
+    private val _stations = MutableLiveData<List<Station>>()
+    val stations: LiveData<List<Station>>
+        get() = _stations
+
+    private val _metaData = MutableLiveData<String>()
+    val metadata: LiveData<String>
+        get() = _metaData
 
     init {
-        getAirQualityResponse()
+//        getAllStations()
+        getStationsByLatLon()
     }
 
-    private fun getAirQualityResponse() {
+    private fun getAllStations() {
         viewModelScope.launch {
             try {
-                val stationResult = AirQualityApi.retrofitService.getStations()
-                _response.value = "Success! ${stationResult.size} stations found!"
+                _stations.value = AirQualityApi.retrofitService.getStations()
             } catch (e: Exception) {
+                Log.d("cre032", e.message.toString())
+            }
+        }
+    }
 
+    private fun getStationsByLatLon() {
+        viewModelScope.launch {
+            try {
+                _metaData.value = AirQualityApi.retrofitService
+                    .getDataByLatLon(60.0, 10.0)
+                Log.d("cre032", metadata.toString())
+            } catch (e: Exception) {
+                Log.d("cre032", e.message.toString())
             }
         }
     }

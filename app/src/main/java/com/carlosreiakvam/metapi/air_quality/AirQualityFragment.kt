@@ -12,7 +12,7 @@ class AirQualityFragment : Fragment() {
     lateinit var binding: FragmentAirQualityBinding
 
     private val viewModel: AirQualityViewModel by lazy {
-        ViewModelProvider(this).get(AirQualityViewModel::class.java)
+        ViewModelProvider(this)[AirQualityViewModel::class.java]
     }
 
 

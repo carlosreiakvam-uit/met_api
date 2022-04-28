@@ -8,6 +8,10 @@
         <variable
             name="viewmodel"
             type="com.carlosreiakvam.metapi.air_quality.AirQualityViewModel" />
+
+        <!--        <variable-->
+        <!--            name="station"-->
+        <!--            type="com.carlosreiakvam.metapi.Station" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewmodel.response}"
+            android:text="@{viewmodel.metadata.toString()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
