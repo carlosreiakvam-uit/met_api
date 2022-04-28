@@ -1,7 +1,7 @@
 package com.carlosreiakvam.metapi.data
 
 data class Data(
-    val time: Time
+    val time: List<Time>
 )
 
 data class Time(
