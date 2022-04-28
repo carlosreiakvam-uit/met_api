@@ -7,12 +7,12 @@ data class Data(
 data class Time(
     val from: String,
     val to: String,
-    val variables: Variables,
-    val reason: Reason
+//    val variables: Variables,
+//    val reason: Reason
 )
 
 data class Variables(
-    val AQI: Variable,
+//    val AQI: Variable,
     val no2_concentration: Variable,
     val AQI_no2: Variable,
     val no2_nonlocal_fraction: Variable,
@@ -57,5 +57,6 @@ data class Variable(
 )
 
 data class Reason(
-    val variables: Array<Variable> //TODO : Mulig feilkilde i valg av type
+    val variables: List<Variable>, //TODO : Mulig feilkilde i valg av type
+    val sources: List<String>
 )
