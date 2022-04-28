@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlosreiakvam.metapi.Station
+import com.carlosreiakvam.metapi.data.PositionalData
 import com.carlosreiakvam.metapi.network.AirQualityApi
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -16,13 +17,13 @@ class AirQualityViewModel : ViewModel() {
     val stations: LiveData<List<Station>>
         get() = _stations
 
-    private val _metaData = MutableLiveData<String>()
-    val metadata: LiveData<String>
-        get() = _metaData
+    private val _positionalData = MutableLiveData<PositionalData>()
+    val positionalData: LiveData<PositionalData>
+        get() = _positionalData
 
     init {
 //        getAllStations()
-        getStationsByLatLon()
+        getPositionalData()
     }
 
     private fun getAllStations() {
@@ -35,12 +36,12 @@ class AirQualityViewModel : ViewModel() {
         }
     }
 
-    private fun getStationsByLatLon() {
+    private fun getPositionalData() {
         viewModelScope.launch {
             try {
-                _metaData.value = AirQualityApi.retrofitService
-                    .getDataByLatLon(60.0, 10.0)
-                Log.d("cre032", metadata.toString())
+                _positionalData.value = AirQualityApi.retrofitService
+                    .getPositionalData(60.0, 10.0)
+                Log.d("cre032", positionalData.toString())
             } catch (e: Exception) {
                 Log.d("cre032", e.message.toString())
             }

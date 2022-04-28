@@ -2,6 +2,7 @@ package com.carlosreiakvam.metapi.network
 
 
 import com.carlosreiakvam.metapi.Station
+import com.carlosreiakvam.metapi.data.PositionalData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -27,11 +28,10 @@ interface AirQualityApiService {
     suspend fun getStations(): List<Station>
 
     @GET(".")
-    suspend fun getDataByLatLon(
+    suspend fun getPositionalData(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double
-    )
-            : String
+    ): PositionalData
 }
 
 object AirQualityApi {

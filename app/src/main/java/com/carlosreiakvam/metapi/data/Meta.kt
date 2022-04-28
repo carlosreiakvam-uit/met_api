@@ -13,7 +13,7 @@ data class Location(
     val path: String,
     val areacode: Int,
     val longitude: Double,
-    val laitude: Double,
+    val latitude: Double,
     val areaclass: String,
     val superareacode: Int
 )
